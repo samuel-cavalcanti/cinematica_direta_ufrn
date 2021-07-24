@@ -10,7 +10,7 @@ braço robótico
 [exercicio_braço_robotico.pdf](docs/Avaliao_Semanal_sobre_cinemtica_direta.pdf)
 
 
-| $i$ | $a_{i-1}$ | $\alpha_{i-1}$ | $d_{i}$ | $\theta_i$ |
+| $i$ | $`a_{i-1}`$ | $\alpha_{i-1}$ | $d_{i}$ | $\theta_i$ |
 | --- | --------- | -------------- | ------- | ---------- |
 | 1   | $0$       | $0$            | $h$     | $\theta_1$ |
 | 2   | $L_1$     | $0$            | $d_2$   | $0$        |
