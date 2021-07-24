@@ -64,6 +64,32 @@ braço robótico
 
 ```zsh
 python3 elo_transform.py
+
+|cos(\theta_1)    (-sin(\theta_1)) 0                0               |
+|sin(\theta_1)    cos(\theta_1)    0                0               |
+|0                0                1.0              h               |
+|0                0                0                1               |
+
+|1.0 0   0   L_1|
+|0   1.0 0   0  |
+|0   0   1.0 d_2|
+|0   0   0   1  |
+
+|cos(\theta_3)    (-sin(\theta_3)) 0                0               |
+|0                0                -1.0             0               |
+|sin(\theta_3)    cos(\theta_3)    0                0               |
+|0                0                0                1               |
+
+|1.0 0   0   L_2|
+|0   1.0 0   0  |
+|0   0   1.0 0  |
+|0   0   0   1  |
+
+|(cos(\theta_1)*cos(\theta_3))                             (cos(\theta_1)*(-sin(\theta_3)))                          ((-sin(\theta_1))*-1.0)                                   (((cos(\theta_1)*cos(\theta_3))*L_2)+(cos(\theta_1)*L_1))|
+|(sin(\theta_1)*cos(\theta_3))                             (sin(\theta_1)*(-sin(\theta_3)))                          (cos(\theta_1)*-1.0)                                      (((sin(\theta_1)*cos(\theta_3))*L_2)+(sin(\theta_1)*L_1))|
+|sin(\theta_3)                                             cos(\theta_3)                                             0                                                         ((sin(\theta_3)*L_2)+(d_2+h))                            |
+|0                                                         0                                                         0                                                         1                                                        |
+
 ```
 
 ## Matriz $`0_{T_1}`$
