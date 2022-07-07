@@ -129,10 +129,10 @@ python3 elo_transform.py
 
 
 
-##  Matriz $`0_{T_4}`$
+##  Matriz $0_{T_4}$
 |                                |                                 |                    |                                                      |
 | ------------------------------ | ------------------------------- | ------------------ | ---------------------------------------------------- |
-| $`cos(\theta_1)cos(\theta_3)`$ | $`cos(\theta_1)sin(\theta_3)`$  | $`sin(\theta_1)`$  | $`L_2cos(\theta_1)cos(\theta_3) + L_1cos(\theta_1)`$ |
+| $cos(\theta_1)cos(\theta_3)$ | $`cos(\theta_1)sin(\theta_3)`$  | $`sin(\theta_1)`$  | $`L_2cos(\theta_1)cos(\theta_3) + L_1cos(\theta_1)`$ |
 | $`sin(\theta_1)cos(\theta_3)`$ | $`-sin(\theta_1)sin(\theta_3)`$ | $`-cos(\theta_1)`$ | $`L_2sin(\theta_1)cos(\theta_3) + L_1sin(\theta_1)`$ |
 | $`sin(\theta_3)`$              | $`cos(\theta_3)`$               | $`0`$              | $`sin(\theta_3)L_2 + d_2 + h `$                      |
 | $`0`$                          | $`0`$                           | $`0`$              | $`1`$                                                |
