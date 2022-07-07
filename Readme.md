@@ -93,6 +93,14 @@ python3 elo_transform.py
 ```
 
 ## Matriz $`0_{T_1}`$
+
+```math
+\begin{pmatrix}
+   a & b \\
+   c & d
+\end{pmatrix}
+```
+
 |                   |                      |       |       |
 | ----------------- | -------------------- | ----- | ----- |
 | $`cos(\theta_1)`$ | $`-sin(\theta_1)  `$ | $`0`$ | $`0`$ |
