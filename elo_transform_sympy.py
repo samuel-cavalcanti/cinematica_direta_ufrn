@@ -1,7 +1,7 @@
 import sympy
 from sympy import Symbol, Matrix, pi,Rational
 
-TO_README =False
+TO_README =True
 
 def from_joinTransform(a:Symbol,alpha:Symbol,d:Symbol,theta:Symbol)->sympy.Matrix:
 
@@ -54,6 +54,24 @@ def from_degree(degree:int)-> float:
     return pi*Rational(degree,180)
 
 
+def print_readme_latex(matrix,title:str):
+    
+    latex:str = str(sympy.latex(matrix))
+    latex = latex.replace("\\\\","\\\\ \n")
+    latex = latex.replace("\left[\\begin{matrix}","\left[\\begin{matrix}\n")
+    latex =latex.replace("\end{matrix}\\right]","\n\end{matrix}\\right]")
+    output_string = \
+f"""
+## {title} 
+        
+$$
+{latex}
+$$
+
+"""
+    
+    print(output_string)
+
 def main():
 
    
@@ -90,12 +108,7 @@ def main():
     result = ((matrix_1 * matrix_2) * matrix_3) * matrix_4
 
 
-    def print_readme_latex(matrix,title:str):
-        print(title,end='\n\n')
-        print("$$")
-        sympy.printing.print_latex(matrix)
-        print("$$")
-        print()
+    
 
 
     def pprint(matrix,title:str):
@@ -104,11 +117,11 @@ def main():
         print()
 
     if TO_README:
-        print_readme_latex(matrix_1,"##  Matriz $0_{T_1}$")
-        print_readme_latex(matrix_2,"##  Matriz $1_{T_2}$")
-        print_readme_latex(matrix_3,"##  Matriz $2_{T_3}$")
-        print_readme_latex(matrix_4,"##  Matriz $3_{T_4}$")
-        print_readme_latex(result,"##  Matriz $0_{T_4}$")
+        print_readme_latex(matrix_1,"Matrix $0_{T_1}$")
+        print_readme_latex(matrix_2,"Matrix $1_{T_2}$")
+        print_readme_latex(matrix_3,"Matrix $2_{T_3}$")
+        print_readme_latex(matrix_4,"Matrix $3_{T_4}$")
+        print_readme_latex(result,"Matrix $0_{T_4}$")
     else:
         pprint(matrix_1,'Matrix 1')
         pprint(matrix_2,'Matrix 2')
