@@ -1,8 +1,6 @@
-# Simbolic Matrix solver numpy
+# cinemática direta de um manipulador robótico
 
-Uma simples lib para calculo de matrizes com variáveis simbolicas utilizado na
-disciplina de introdução a robótica, para o calculo da cinemática direta de um
-braço robótico
+calculo da cinemática de  braço robótico
 
 
 ![braço](docs/exemplo_braco.png)
@@ -19,135 +17,148 @@ braço robótico
 
  
 ```python
-# elo_transform.py
- matrix_1 = ExpressionMatrix.from_joinTransform(
-        a=Expression(0),
-        alpha=Angle.from_degree(0),
-        d=Expression('h'),
-        theta=Expression('\\theta_1')
+# elo_transform_sympy.py
+ matrix_1 = from_joinTransform(
+        a=0,
+        alpha=0,
+        d=Symbol('h'),
+        theta=Symbol('theta_1')
     )
 
-    matrix_2 = ExpressionMatrix.from_joinTransform(
-        a=Expression('L_1'),
-        alpha=Angle.from_degree(0),
-        d=Expression('d_2'),
-        theta=Angle.from_degree(0)
+    matrix_2 = from_joinTransform(
+        a=Symbol('L_1'),
+        alpha=0,
+        d=Symbol('d_2'),
+        theta=0
     )
 
-    matrix_3 = ExpressionMatrix.from_joinTransform(
-        a=Expression(0),
-        alpha=Angle.from_degree(90),
-        d=Expression(0),
-        theta=Expression('\\theta_3')
+    matrix_3 = from_joinTransform(
+        a=0,
+        alpha=from_degree(90),
+        d=0,
+        theta=Symbol('theta_3')
     )
 
-    matrix_4 = ExpressionMatrix.from_joinTransform(
-        a=Expression('L_2'),
-        alpha=Angle.from_degree(0),
-        d=Expression(0),
-        theta=Angle.from_degree(0)
+    matrix_4 = from_joinTransform(
+        a=Symbol('L_2'),
+        alpha=from_degree(0),
+        d=0,
+        theta=from_degree(0)
     )
-
-    print(matrix_1, end='\n\n')
-
-    print(matrix_2, end='\n\n')
-
-    print(matrix_3, end='\n\n')
-
-    print(matrix_4, end='\n\n')
 
     result = ((matrix_1 * matrix_2) * matrix_3) * matrix_4
-
-    print(result)
-
 ```
 
 ```zsh
-python3 elo_transform.py
+python3 elo_transform_sympy.py
 
-|cos(\theta_1)    (-sin(\theta_1)) 0                0               |
-|sin(\theta_1)    cos(\theta_1)    0                0               |
-|0                0                1.0              h               |
-|0                0                0                1               |
+Matrix 1
 
-|1.0 0   0   L_1|
-|0   1.0 0   0  |
-|0   0   1.0 d_2|
-|0   0   0   1  |
+⎡cos(θ₁)  -sin(θ₁)  0  0⎤
+⎢                       ⎥
+⎢sin(θ₁)  cos(θ₁)   0  0⎥
+⎢                       ⎥
+⎢   0        0      1  h⎥
+⎢                       ⎥
+⎣   0        0      0  1⎦
 
-|cos(\theta_3)    (-sin(\theta_3)) 0                0               |
-|0                0                -1.0             0               |
-|sin(\theta_3)    cos(\theta_3)    0                0               |
-|0                0                0                1               |
+Matrix 2
 
-|1.0 0   0   L_2|
-|0   1.0 0   0  |
-|0   0   1.0 0  |
-|0   0   0   1  |
+⎡1  0  0  L₁⎤
+⎢           ⎥
+⎢0  1  0  0 ⎥
+⎢           ⎥
+⎢0  0  1  d₂⎥
+⎢           ⎥
+⎣0  0  0  1 ⎦
 
-|(cos(\theta_1)*cos(\theta_3))                             (cos(\theta_1)*(-sin(\theta_3)))                          ((-sin(\theta_1))*-1.0)                                   (((cos(\theta_1)*cos(\theta_3))*L_2)+(cos(\theta_1)*L_1))|
-|(sin(\theta_1)*cos(\theta_3))                             (sin(\theta_1)*(-sin(\theta_3)))                          (cos(\theta_1)*-1.0)                                      (((sin(\theta_1)*cos(\theta_3))*L_2)+(sin(\theta_1)*L_1))|
-|sin(\theta_3)                                             cos(\theta_3)                                             0                                                         ((sin(\theta_3)*L_2)+(d_2+h))                            |
-|0                                                         0                                                         0                                                         1                                                        |
+Matrix 3
+
+⎡cos(θ₃)  -sin(θ₃)  0   0⎤
+⎢                        ⎥
+⎢   0        0      -1  0⎥
+⎢                        ⎥
+⎢sin(θ₃)  cos(θ₃)   0   0⎥
+⎢                        ⎥
+⎣   0        0      0   1⎦
+
+Matrix 4
+
+⎡1  0  0  L₂⎤
+⎢           ⎥
+⎢0  1  0  0 ⎥
+⎢           ⎥
+⎢0  0  1  0 ⎥
+⎢           ⎥
+⎣0  0  0  1 ⎦
+
+Result
+
+⎡cos(θ₁)⋅cos(θ₃)  -sin(θ₃)⋅cos(θ₁)  sin(θ₁)   L₁⋅cos(θ₁) + L₂⋅cos(θ₁)⋅cos(θ₃)  ⎤
+⎢                                                                            ⎥
+⎢sin(θ₁)⋅cos(θ₃)  -sin(θ₁)⋅sin(θ₃)  -cos(θ₁)  L₁⋅sin(θ₁) + L₂⋅sin(θ₁)⋅cos(θ₃)  ⎥
+⎢                                                                            ⎥
+⎢    sin(θ₃)          cos(θ₃)          0            L₂⋅sin(θ₃) + d₂ + h      ⎥
+⎢                                                                            ⎥
+⎣       0                0             0                     1               ⎦
 
 ```
-
-## Matriz $0_{T_1}$
-
-$$
-\begin{pmatrix}
-   cos(\theta_1) & -sin(\theta_1) & 0 & 0 \\
-   sin(\theta_1) & cos(\theta_1)  & 1 & h \\
-   0             & 0              & 0 & 1 \\
-\end{pmatrix}
-$$
-
-
-
-## Matriz $1_{T_2}$
+##  Matriz $0_{T_1}$
 
 $$
-\begin{pmatrix}
-    1 & 0 & 0 & L_1 \\
-    0 & 1 & 0 & 0   \\
-    0 & 0 & 1 & d_2 \\
-    0 & 0 & 0 & 1   \\
-\end{pmatrix}
+\left[\begin{matrix}\cos{\left(\theta_{1} \right)} & - \sin{\left(\theta_{1} \right)} & 0 & 0\\\sin{\left(\theta_{1} \right)} & \cos{\left(\theta_{1} \right)} & 0 & 0\\0 & 0 & 1 & h\\0 & 0 & 0 & 1\end{matrix}\right]
 $$
 
-
-## Matriz $2_{T_3}$
-
-$$
-\begin{pmatrix}
-    cos(\theta_3) & -sin(\theta_3) & 0 & 0 \\
-    0             &       0        & -1& 0 \\
-    sin(\theta_3) & cos(\theta_3)  & 0 & 0 \\
-    0             &       0        & 0 & 1 \\
-\end{pmatrix}
-$$
-
-
-## Matriz $3_{T_4}$
+##  Matriz $1_{T_2}$
 
 $$
-\begin{pmatrix}
-    1 & 0 & 0 & L_2 \\
-    0 & 1 & 0 & 0   \\
-    0 & 0 & 1 & 0 \\
-    0 & 0 & 0 & 1   \\
-\end{pmatrix}
+\left[\begin{matrix}1 & 0 & 0 & L_{1}\\0 & 1 & 0 & 0\\0 & 0 & 1 & d_{2}\\0 & 0 & 0 & 1\end{matrix}\right]
 $$
 
+##  Matriz $2_{T_3}$
 
+$$
+\left[\begin{matrix}\cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{3} \right)} & 0 & 0\\0 & 0 & -1 & 0\\\sin{\left(\theta_{3} \right)} & \cos{\left(\theta_{3} \right)} & 0 & 0\\0 & 0 & 0 & 1\end{matrix}\right]
+$$
+
+##  Matriz $3_{T_4}$
+
+$$
+\left[\begin{matrix}1 & 0 & 0 & L_{2}\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 1\end{matrix}\right]
+$$
 
 ##  Matriz $0_{T_4}$
 
 $$
-\begin{pmatrix}
-    cos(\theta_1)cos(\theta_3)    & cos(\theta_1)sin(\theta_3)  & sin(\theta_1)  & L_2cos(\theta_1)cos(\theta_3) + L_1cos(\theta_1)   \\
-    sin(\theta_1)cos(\theta_3)    & -sin(\theta_1)sin(\theta_3) & -cos(\theta_1) & L_2sin(\theta_1)cos(\theta_3) + L_1sin(\theta_1)   \\
-    sin(\theta_3)                 & cos(\theta_3)               &      0         & sin(\theta_3)L_2 + d_2 + h                         \\
-    0                             & 0                           &      0         &   1                                                \\
-\end{pmatrix}
+\left[\begin{matrix}\cos{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{3} \right)} \cos{\left(\theta_{1} \right)} & \sin{\left(\theta_{1} \right)} & L_{1} \cos{\left(\theta_{1} \right)} + L_{2} \cos{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)}\\\sin{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{1} \right)} \sin{\left(\theta_{3} \right)} & - \cos{\left(\theta_{1} \right)} & L_{1} \sin{\left(\theta_{1} \right)} + L_{2} \sin{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)}\\\sin{\left(\theta_{3} \right)} & \cos{\left(\theta_{3} \right)} & 0 & L_{2} \sin{\left(\theta_{3} \right)} + d_{2} + h\\0 & 0 & 0 & 1\end{matrix}\right]
+$$
+
+##  Matriz $0_{T_1}$
+
+$$
+\left[\begin{matrix}\cos{\left(\theta_{1} \right)} & - \sin{\left(\theta_{1} \right)} & 0 & 0\\\sin{\left(\theta_{1} \right)} & \cos{\left(\theta_{1} \right)} & 0 & 0\\0 & 0 & 1 & h\\0 & 0 & 0 & 1\end{matrix}\right]
+$$
+
+##  Matriz $1_{T_2}$
+
+$$
+\left[\begin{matrix}1 & 0 & 0 & L_{1}\\0 & 1 & 0 & 0\\0 & 0 & 1 & d_{2}\\0 & 0 & 0 & 1\end{matrix}\right]
+$$
+
+##  Matriz $2_{T_3}$
+
+$$
+\left[\begin{matrix}\cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{3} \right)} & 0 & 0\\0 & 0 & -1 & 0\\\sin{\left(\theta_{3} \right)} & \cos{\left(\theta_{3} \right)} & 0 & 0\\0 & 0 & 0 & 1\end{matrix}\right]
+$$
+
+##  Matriz $3_{T_4}$
+
+$$
+\left[\begin{matrix}1 & 0 & 0 & L_{2}\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 1\end{matrix}\right]
+$$
+
+##  Matriz $0_{T_4}$
+
+$$
+\left[\begin{matrix}\cos{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{3} \right)} \cos{\left(\theta_{1} \right)} & \sin{\left(\theta_{1} \right)} & L_{1} \cos{\left(\theta_{1} \right)} + L_{2} \cos{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)}\\\sin{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{1} \right)} \sin{\left(\theta_{3} \right)} & - \cos{\left(\theta_{1} \right)} & L_{1} \sin{\left(\theta_{1} \right)} + L_{2} \sin{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)}\\\sin{\left(\theta_{3} \right)} & \cos{\left(\theta_{3} \right)} & 0 & L_{2} \sin{\left(\theta_{3} \right)} + d_{2} + h\\0 & 0 & 0 & 1\end{matrix}\right]
 $$
