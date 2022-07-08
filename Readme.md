@@ -106,7 +106,12 @@ Result
 ##  Matriz $0_{T_1}$
 
 $$
-\left[\begin{matrix}\cos{\left(\theta_{1} \right)} & - \sin{\left(\theta_{1} \right)} & 0 & 0\\\sin{\left(\theta_{1} \right)} & \cos{\left(\theta_{1} \right)} & 0 & 0\\0 & 0 & 1 & h\\0 & 0 & 0 & 1\end{matrix}\right]
+\left[\begin{matrix}
+\cos{\left(\theta_{1} \right)} & - \sin{\left(\theta_{1} \right)} & 0 & 0 \\
+\sin{\left(\theta_{1} \right)} & \cos{\left(\theta_{1} \right)} & 0 & 0 \\
+0 & 0 & 1 & h\\
+0 & 0 & 0 & 1
+\end{matrix}\right]
 $$
 
 ##  Matriz $1_{T_2}$
