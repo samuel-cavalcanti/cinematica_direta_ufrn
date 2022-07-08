@@ -151,33 +151,44 @@ $$
 \left[\begin{matrix}
 \cos{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{3} \right)} \cos{\left(\theta_{1} \right)} & \sin{\left(\theta_{1} \right)} & L_{1} \cos{\left(\theta_{1} \right)} + L_{2} \cos{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)}\\
 \sin{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{1} \right)} \sin{\left(\theta_{3} \right)} & - \cos{\left(\theta_{1} \right)} & L_{1} \sin{\left(\theta_{1} \right)} + L_{2} \sin{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)}\\
-\sin{\left(\theta_{3} \right)} & \cos{\left(\theta_{3} \right)} & 0 & L_{2} \sin{\left(\theta_{3} \right)} + d_{2} + h\\0 & 0 & 0 & 1\end{matrix}\right]
+\sin{\left(\theta_{3} \right)} & \cos{\left(\theta_{3} \right)} & 0 & L_{2} \sin{\left(\theta_{3} \right)} + d_{2} + h\\
+0 & 0 & 0 & 1\end{matrix}\right]
 $$
 
 ##  Matriz $0_{T_1}$
 
 $$
 \left[\begin{matrix}\cos{\left(\theta_{1} \right)} & - \sin{\left(\theta_{1} \right)} & 0 & 0\\
-\sin{\left(\theta_{1} \right)} & \cos{\left(\theta_{1} \right)} & 0 & 0\\0 & 0 & 1 & h\\0 & 0 & 0 & 1\end{matrix}\right]
+\sin{\left(\theta_{1} \right)} & \cos{\left(\theta_{1} \right)} & 0 & 0\\
+0 & 0 & 1 & h\\
+0 & 0 & 0 & 1\end{matrix}\right]
 $$
 
 ##  Matriz $1_{T_2}$
 
 $$
-\left[\begin{matrix}1 & 0 & 0 & L_{1}\\0 & 1 & 0 & 0\\0 & 0 & 1 & d_{2}\\0 & 0 & 0 & 1\end{matrix}\right]
+\left[\begin{matrix}1 & 0 & 0 & L_{1}\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & d_{2}\\
+0 & 0 & 0 & 1\end{matrix}\right]
 $$
 
 ##  Matriz $2_{T_3}$
 
 $$
-\left[\begin{matrix}\cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{3} \right)} & 0 & 0\\0 & 0 & -1 & 0\\
-\sin{\left(\theta_{3} \right)} & \cos{\left(\theta_{3} \right)} & 0 & 0\\0 & 0 & 0 & 1\end{matrix}\right]
+\left[\begin{matrix}\cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{3} \right)} & 0 & 0\\
+0 & 0 & -1 & 0\\
+\sin{\left(\theta_{3} \right)} & \cos{\left(\theta_{3} \right)} & 0 & 0\\
+0 & 0 & 0 & 1\end{matrix}\right]
 $$
 
 ##  Matriz $3_{T_4}$
 
 $$
-\left[\begin{matrix}1 & 0 & 0 & L_{2}\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 1\end{matrix}\right]
+\left[\begin{matrix}1 & 0 & 0 & L_{2}\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\end{matrix}\right]
 $$
 
 ##  Matriz $0_{T_4}$
@@ -185,5 +196,6 @@ $$
 $$
 \left[\begin{matrix}\cos{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{3} \right)} \cos{\left(\theta_{1} \right)} & \sin{\left(\theta_{1} \right)} & L_{1} \cos{\left(\theta_{1} \right)} + L_{2} \cos{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)}\\
 \sin{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)} & - \sin{\left(\theta_{1} \right)} \sin{\left(\theta_{3} \right)} & - \cos{\left(\theta_{1} \right)} & L_{1} \sin{\left(\theta_{1} \right)} + L_{2} \sin{\left(\theta_{1} \right)} \cos{\left(\theta_{3} \right)}\\
-\sin{\left(\theta_{3} \right)} & \cos{\left(\theta_{3} \right)} & 0 & L_{2} \sin{\left(\theta_{3} \right)} + d_{2} + h\\0 & 0 & 0 & 1\end{matrix}\right]
+\sin{\left(\theta_{3} \right)} & \cos{\left(\theta_{3} \right)} & 0 & L_{2} \sin{\left(\theta_{3} \right)} + d_{2} + h\\
+0 & 0 & 0 & 1\end{matrix}\right]
 $$
